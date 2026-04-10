@@ -2,11 +2,15 @@ import express from 'express'
 import cors from "cors"
 import { PrismaClient } from '@prisma/client'
 
+const PORT = process.env.PORT || 3000
 const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json())
 app.use(cors())
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
 
 //Add novo usuário
 app.post('/users', async (req, res) => {
