@@ -6,11 +6,10 @@ const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json())
-app.use(cors('http://localhost:3000'))
+app.use(cors())
 
 //Add novo usuário
 app.post('/users', async (req, res) => {
-  console.log("LOGs: ", res)
   await prisma.user.create({
     data: {
       name: req.body.nome,
@@ -29,7 +28,6 @@ app.get("/users", async (req, res) => {
 
 //Atualiza dados de um  usuário
 app.put('/users/:id', async (req, res) => {
-  console.log("Req >>> ", req)
   await prisma.user.update({
     where: {
       id: req.params.id
